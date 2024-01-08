@@ -55,8 +55,8 @@
     <form id="loginForm">
         <h2>Login</h2>
         <div id="loginError" class="error"></div>
-        <label for="loginEmail">Email:</label>
-        <input type="email" id="loginEmail" placeholder="Enter your email" required>
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" placeholder="Enter your username" required>
 
         <label for="loginPassword">Password:</label>
         <input type="password" id="loginPassword" placeholder="Enter your password" required>
@@ -66,8 +66,8 @@
         <hr>
 
         <h2>Registration</h2>
-        <label for="registerEmail">Email:</label>
-        <input type="email" id="registerEmail" placeholder="Enter your email" required>
+        <label for="registerUsername">Username:</label>
+        <input type="text" id="registerUsername" placeholder="Enter your username" required>
 
         <label for="registerPassword">Password:</label>
         <input type="password" id="registerPassword" placeholder="Enter your password" required>
@@ -77,35 +77,41 @@
 
     <script>
         function login() {
-            const email = document.getElementById('loginEmail').value;
+            const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
 
             const users = JSON.parse(localStorage.getItem('users')) || [];
 
-            const user = users.find(u => u.email === email && u.password === password);
+            const user = users.find(u => u.username === username && u.password === password);
 
             if (user) {
                 // Redirect to homepage
                 window.location.href = 'index.html';
             } else {
-                document.getElementById('loginError').innerText = 'Invalid email or password';
+                document.getElementById('loginError').innerText = 'Invalid username or password';
             }
         }
 
         function register() {
-            const email = document.getElementById('registerEmail').value;
+            const username = document.getElementById('registerUsername').value;
             const password = document.getElementById('registerPassword').value;
+
+            // Check if both username and password are entered
+            if (!username || !password) {
+                document.getElementById('loginError').innerText = 'Both username and password are required';
+                return;
+            }
 
             const users = JSON.parse(localStorage.getItem('users')) || [];
 
-            // Check if the email is already registered
-            const emailExists = users.some(u => u.email === email);
+            // Check if the username is already registered
+            const usernameExists = users.some(u => u.username === username);
 
-            if (emailExists) {
-                document.getElementById('loginError').innerText = 'Email already registered';
+            if (usernameExists) {
+                document.getElementById('loginError').innerText = 'Username already registered';
             } else {
                 // Save user data locally
-                users.push({ email, password });
+                users.push({ username, password });
                 localStorage.setItem('users', JSON.stringify(users));
 
                 // Redirect to homepage
