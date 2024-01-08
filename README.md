@@ -1,15 +1,34 @@
-# Daksh Hande's Personal Website
+# Daksh Hande - Personal Portfolio
 
-Welcome to my personal website! This website provides information about me, my interests, and achievements.
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
+## Description
 
-## About This Website
+Welcome to my personal portfolio website! This repository contains the source code for my online portfolio, showcasing my skills, projects, and achievements.
 
-This website is designed to showcase my profile and offer an interactive Accountancy quiz. Explore the different sections and enjoy the quiz!
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [License](#license)
+- [Contact](#contact)
+
+## Features
+
+- **Home Page:** Introduction and welcome message.
+- **skills page** about my skills
+- **help page** if any user who is visiting my website needed help can visut help page 
 
 ## Technologies Used
 
-- HTML
-- CSS
+- HTML5
+- CSS3
 
-Feel free to explore the website and learn more about my journey and interests.
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/HeXqqCode/HeXqqCode.git
