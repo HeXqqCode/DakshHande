@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Daksh Hande - Cookie Consent</title>
+    <style>
+        /* Your existing CSS styles */
+
+        /* Additional styles for the cookie consent section */
+        #cookieConsent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            display: none;
+        }
+
+        #cookieButtons {
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #fff;
+            color: #333;
+            padding: 5px 10px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to my Website!</h1>
+    </header>
+
+    <!-- Cookie Consent Section -->
+    <div id="cookieConsent">
+        <p>This website uses cookies to enhance user experience.</p>
+        <div id="cookieButtons">
+            <button onclick="acceptCookies()">Accept</button>
+            <button onclick="declineCookies()">Decline</button>
+        </div>
+    </div>
+
+    <section>
+        <!-- Your website content goes here -->
+        <h2>Sample Content</h2>
+        <p>Read the consent carefully . We uses cookies to run site more fastly for user who are visiting our website . If you accept cokkies its way much better we value your privacy and concern...</p>
+    </section>
+
+    <footer>
+        <p>Feel free to reach out at <a href="mailto:your@email.com">your@email.com</a></p>
+        <span>&copy; 2024 Daksh Hande. All Rights Reserved.</span>
+    </footer>
+
+    <script>
+        // Check if the user has already accepted cookies
+        document.addEventListener('DOMContentLoaded', checkCookies);
+
+        function checkCookies() {
+            const cookiesAccepted = getCookie('cookiesAccepted');
+
+            if (!cookiesAccepted) {
+                // Show the cookie consent message if not accepted
+                document.getElementById('cookieConsent').style.display = 'block';
+            }
+        }
+
+        function acceptCookies() {
+            // Set a cookie to remember that the user accepted cookies
+            setCookie('cookiesAccepted', 'true', 365);
+
+            // Hide the cookie consent message
+            document.getElementById('cookieConsent').style.display = 'none';
+        }
+
+        function declineCookies() {
+            // Handle declining cookies (you can add your own logic here)
+
+            // For example, you might want to delete any existing cookies
+            document.cookie = 'cookiesAccepted=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+            // Hide the cookie consent message
+            document.getElementById('cookieConsent').style.display = 'none';
+        }
+
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+        }
+
+        function getCookie(name) {
+            const cookieName = `${name}=`;
+            const cookies = document.cookie.split(';');
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.indexOf(cookieName) === 0) {
+                    return cookie.substring(cookieName.length, cookie.length);
+                }
+            }
+
+            return null;
+        }
+    </script>
+</body>
+</html>
