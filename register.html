@@ -64,6 +64,9 @@
         <label for="registerPassword">Password:</label>
         <input type="password" id="registerPassword" placeholder="Enter your password" required>
 
+        <label for="registerBio">Bio:</label>
+        <input type="text" id="registerBio" placeholder="Enter your bio (optional)">
+
         <button type="button" onclick="register()">Register</button>
     </form>
 
@@ -72,6 +75,7 @@
             const name = document.getElementById('registerName').value;
             const email = document.getElementById('registerEmail').value;
             const password = document.getElementById('registerPassword').value;
+            const bio = document.getElementById('registerBio').value;
 
             // Check if all fields are entered
             if (!name || !email || !password) {
@@ -88,11 +92,11 @@
                 document.getElementById('registerError').innerText = 'Email already registered';
             } else {
                 // Save user data locally
-                users.push({ name, email, password, bio: '' });
+                users.push({ name, email, password, bio });
                 localStorage.setItem('users', JSON.stringify(users));
 
                 // Redirect to homepage with user profile data
-                window.location.href = `index.html?name=${name}&email=${email}&bio=`;
+                window.location.href = `index.html?name=${name}&email=${email}&bio=${bio || ''}`;
             }
         }
     </script>
