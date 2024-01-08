@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login and Registration</title>
+    <title>Login - Daksh Hande's Personal Portfolio</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,67 +55,29 @@
     <form id="loginForm">
         <h2>Login</h2>
         <div id="loginError" class="error"></div>
-        <label for="loginUsername">Username:</label>
-        <input type="text" id="loginUsername" placeholder="Enter your username" required>
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" placeholder="Enter your email" required>
 
         <label for="loginPassword">Password:</label>
         <input type="password" id="loginPassword" placeholder="Enter your password" required>
 
         <button type="button" onclick="login()">Login</button>
-
-        <hr>
-
-        <h2>Registration</h2>
-        <label for="registerUsername">Username:</label>
-        <input type="text" id="registerUsername" placeholder="Enter your username" required>
-
-        <label for="registerPassword">Password:</label>
-        <input type="password" id="registerPassword" placeholder="Enter your password" required>
-
-        <button type="button" onclick="register()">Register</button>
     </form>
 
     <script>
         function login() {
-            const username = document.getElementById('loginUsername').value;
+            const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
 
             const users = JSON.parse(localStorage.getItem('users')) || [];
 
-            const user = users.find(u => u.username === username && u.password === password);
+            const user = users.find(u => u.email === email && u.password === password);
 
             if (user) {
-                // Redirect to homepage
-                window.location.href = 'index.html';
+                // Redirect to homepage with user profile data
+                window.location.href = `index.html?name=${user.name}&email=${user.email}&bio=${user.bio || ''}`;
             } else {
-                document.getElementById('loginError').innerText = 'Invalid username or password';
-            }
-        }
-
-        function register() {
-            const username = document.getElementById('registerUsername').value;
-            const password = document.getElementById('registerPassword').value;
-
-            // Check if both username and password are entered
-            if (!username || !password) {
-                document.getElementById('loginError').innerText = 'Both username and password are required';
-                return;
-            }
-
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-
-            // Check if the username is already registered
-            const usernameExists = users.some(u => u.username === username);
-
-            if (usernameExists) {
-                document.getElementById('loginError').innerText = 'Username already registered';
-            } else {
-                // Save user data locally
-                users.push({ username, password });
-                localStorage.setItem('users', JSON.stringify(users));
-
-                // Redirect to homepage
-                window.location.href = 'index.html';
+                document.getElementById('loginError').innerText = 'Invalid email or password';
             }
         }
     </script>
