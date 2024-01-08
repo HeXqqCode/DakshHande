@@ -58,6 +58,13 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
+        .user-profile {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
         footer {
             text-align: center;
             background-color: #333;
@@ -91,9 +98,11 @@
             <li><a href="login.html">Login</a></li>
             <li><a href="register.html">Register</a></li>
         </ul>
-        </ul>
     </nav>
     <section>
+        <div class="user-profile" id="userProfile">
+            <!-- User Profile Section -->
+        </div>
         <h2>About Me</h2>
         <p>Hello, I'm Daksh Hande, a commerce student currently in class 12th. Graduating in 2023-24 with my final exams on March 4, 2024. I'm passionate about chess, holding one trophy and numerous certificates, with a FIDE rating of 1060 in rapid chess. I've also dabbled in programming, completing a core Python course and working on various Python projects. Aspiring to become a cabin crew member, my ultimate goal is to settle permanently in the U.S. after gaining experience in the aviation industry.</p>
     </section>
@@ -102,5 +111,22 @@
         <span>&copy; 2024 Daksh Hande. All Rights Reserved.</span>
     </footer>
     <script src="quiz.js"></script>
+    <script>
+        // Fetch user profile data from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const userName = urlParams.get('name');
+        const userEmail = urlParams.get('email');
+        const userBio = urlParams.get('bio');
+
+        if (userName && userEmail) {
+            const userProfileElement = document.getElementById('userProfile');
+            userProfileElement.innerHTML = `
+                <h2>User Profile</h2>
+                <p>Name: ${userName}</p>
+                <p>Email: ${userEmail}</p>
+                ${userBio ? `<p>Bio: ${userBio}</p>` : ''}
+            `;
+        }
+    </script>
 </body>
 </html>
